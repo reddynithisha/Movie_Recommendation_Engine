@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <title></title>
+    <script src=  "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>  
+    
+    <script src=  "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>  
+    
+    <link href= "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"rel="stylesheet" type="text/css" />  
+    
+</head>
+
+<body>
+    <h1 style="text-align:center"> Welcome to Movie Recommendation</h1>
+    
+    <form action="details" method="POST">
+      {% csrf_token %}
+      <div style="text-align:center">
+        <input type="text" name="search" id="search" placeholder="Enter Movie Name"><br><br>
+      </div>
+      <div style="text-align:center">
+        <input type="submit" value="Save" name="Save" align="middle"><br>
+      </div>
+    </form>
+
+
+    <script type="text/javascript">
+      
+      $( function() {
+        
+        $( "#search" ).autocomplete({
+          source: "{% url 'recommendation:autosuggestion' %}",
+          minLength: 5
+        });
+      } );
+    </script>
+
+      
+    
+    
+
+    
+     
+
+
+
+      
+  
+
+
+    
+</body>
+
+
+{% endblock %}

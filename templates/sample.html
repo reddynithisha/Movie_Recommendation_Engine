@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+        body {margin:25px;}
+        
+        /*div.polaroid {
+          width: 70%;
+          background-color: white;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          margin-bottom: 25px;
+        }*/
+
+        div.column {
+            float: left;
+            width: 18%;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-bottom: 30px;
+          }
+        div.clear{
+            clear : both;
+        }
+
+          div.column1 {
+            float: left;
+            width: 20%;
+            padding: 10px;
+          }
+
+        div.container {
+            text-align: center;
+            padding: 10px 20px;
+          }
+        
+          table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+          }
+          
+          tr:nth-child(even) {
+            background-color: #dddddd;
+          }
+
+    </style>           
+</head>
+
+<body>
+
+    <h1 style="text-align: center">{{Movie}}</h1>
+   
+    {% if mesg == 1 %}
+
+      <h2 style="text-align: center">Sorry we couldn't find the movie</h2>
+
+    {% endif %}
+
+    {% if mesg == 0 %}
+      <div class="clear">
+          <div class="column1">
+              <img src="{{Poster}}" style="width:100%" />
+          </div>
+          <br>
+          <b>Overview </b>        : {{overview}}<br><br>
+          <b>Tagline </b>         : {{tagline}}<br><br>
+          <b>Release_date</b>     : {{release_date}}<br><br>
+          <b>Vote_average</b>     : {{vote_average}}<br><br>
+          <b>Budget </b>          : {{budget}}<br><br>
+          <b>Revenue</b>           :{{revenue}}<br><br>
+          <b>Director </b>        : {{director}}<br><br>
+      </div>
+
+
+      <div class="clear">
+      <h2>CAST:</h2><br>
+      </div>
+      
+      <div class="clear">
+          {% for i, j, k in cast %}
+          
+          <div class="column1">
+              <img src="{{i}}" style="width:100%" />
+              {{j}} As {{k}}
+          </div>
+
+          {% endfor %}
+
+      </div>
+
+      <br>
+
+      <div class="clear">
+      <h2>Recommendations:</h2>
+      </div>
+      
+      <div class="clear">
+          {% for i , j in my_recommendations %}
+              <div class="column">
+                      <img src="{{i}}"  style="width:100%" />
+                      
+              </div>
+
+          {% endfor %}
+      
+      </div>
+      <br>
+      <div class="clear">
+      <h2>Reviews:</h2>
+      </div>
+      <table>
+          <tr>
+              <th>Review</th>
+              <th>Sentiment</th>
+            </tr>
+            {% for i , j in myreview %}
+              <tr>
+                  <td>{{i}}</td>
+                  <td>{{j}}</td>
+              </tr>
+            {% endfor %}
+      </table>
+    
+    {% endif %}
+    
+</body>
+
+{% endblock %}
