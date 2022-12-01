@@ -10,7 +10,7 @@ import json
 import requests
 from gensim.models import KeyedVectors
 tmdb = TMDb()
-tmdb.api_key = 'd0f26b98e7f50e4074fec48647b87629'
+tmdb.api_key = 'Your AP1 Key'
 from tmdbv3api import Movie
 tmdb_movie = Movie()
 from sklearn.metrics.pairwise import cosine_similarity
